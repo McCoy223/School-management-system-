@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign in — New Testament Baptist Academy</title>
+    <meta name="theme-color" content="#073a78">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23073a78'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Kalam:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="auth.css">
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.js"></script>
+</head>
+
+<body>
+
+    <main class="auth-shell">
+
+        <!-- ============ LEFT: BRAND PANEL ============ -->
+        <aside class="brand-panel" aria-hidden="true">
+            <div class="brand-top">
+                <span class="brand-mark"><i data-lucide="graduation-cap"></i></span>
+                <div>
+                    <b>New Testament<br>Baptist Academy</b>
+                    <small>Creche – Primary</small>
+                </div>
+            </div>
+
+            <div class="brand-mid">
+                <h2>Staff Portal</h2>
+                <p>Sign in to manage students, record attendance, enter results and keep the school running.</p>
+                <ul class="brand-points">
+                    <li><i data-lucide="check" aria-hidden="true"></i>Student records &amp; admissions</li>
+                    <li><i data-lucide="check" aria-hidden="true"></i>Attendance and examinations</li>
+                    <li><i data-lucide="check" aria-hidden="true"></i>Fees, reports and announcements</li>
+                </ul>
+            </div>
+
+            <div class="brand-quote">
+                <p>“Train up a child in the way he should go.”</p>
+                <span>Proverbs 22:6</span>
+            </div>
+        </aside>
+
+        <!-- ============ RIGHT: FORM PANEL ============ -->
+        <section class="form-panel">
+
+            <header class="form-head">
+                <div class="mobile-brand">
+                    <span class="brand-mark"><i data-lucide="graduation-cap" aria-hidden="true"></i></span>
+                    <b>New Testament Baptist Academy</b>
+                </div>
+                <h1 id="formTitle">Welcome back</h1>
+                <p id="formSub">Sign in to your staff account to continue.</p>
+            </header>
+
+            <!-- Tabs -->
+            <div class="tabs" role="tablist" aria-label="Authentication mode">
+                <button class="tab-btn" role="tab" id="tab-signin" data-mode="signin" aria-selected="true"
+                    aria-controls="panel-signin"><i data-lucide="log-in" aria-hidden="true"></i>Sign in</button>
+                <button class="tab-btn" role="tab" id="tab-signup" data-mode="signup" aria-selected="false"
+                    aria-controls="panel-signup"><i data-lucide="user-plus" aria-hidden="true"></i>Sign up</button>
+            </div>
+
+            <!-- ========== SIGN IN ========== -->
+            <form class="auth-form" id="panel-signin" role="tabpanel" aria-labelledby="tab-signin" novalidate>
+                <div class="field">
+                    <label for="siEmail">Email address</label>
+                    <div class="input-wrap">
+                        <i data-lucide="mail" aria-hidden="true"></i>
+                        <input id="siEmail" type="email" autocomplete="username" placeholder="you@ntba.edu.gh" required>
+                    </div>
+                    <span class="field-error" role="alert"></span>
+                </div>
+
+                <div class="field">
+                    <label for="siPassword">Password</label>
+                    <div class="input-wrap">
+                        <i data-lucide="lock" aria-hidden="true"></i>
+                        <input id="siPassword" type="password" autocomplete="current-password" placeholder="••••••••"
+                            required>
+                        <button type="button" class="peek" data-peek="siPassword" aria-label="Show password"><i
+                                data-lucide="eye" aria-hidden="true"></i></button>
+                    </div>
+                    <span class="field-error" role="alert"></span>
+                </div>
+
+                <div class="row-between">
+                    <label class="check">
+                        <input type="checkbox" id="siRemember">
+                        <span>Remember me on this device</span>
+                    </label>
+                    <a href="#" class="link" id="forgotLink">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i data-lucide="log-in" aria-hidden="true"></i>Sign in
+                </button>
+
+                <div class="demo-hint">
+                    <b>Demo accounts</b>
+                    <button type="button" class="demo-chip" data-email="admin@ntba.edu.gh">admin@ntba.edu.gh</button>
+                    <button type="button" class="demo-chip"
+                        data-email="teacher@ntba.edu.gh">teacher@ntba.edu.gh</button>
+                    <button type="button" class="demo-chip" data-email="staff@ntba.edu.gh">staff@ntba.edu.gh</button>
+                    <span>Password for all demo accounts: <code>ntba2026</code></span>
+                </div>
+            </form>
+
+            <!-- ========== SIGN UP ========== -->
+            <form class="auth-form" id="panel-signup" role="tabpanel" aria-labelledby="tab-signup" novalidate hidden>
+                <div class="form-grid two">
+                    <div class="field">
+                        <label for="suFirst">First name</label>
+                        <input id="suFirst" autocomplete="given-name" required>
+                        <span class="field-error" role="alert"></span>
+                    </div>
+                    <div class="field">
+                        <label for="suLast">Last name</label>
+                        <input id="suLast" autocomplete="family-name" required>
+                        <span class="field-error" role="alert"></span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="suEmail">Work email address</label>
+                    <div class="input-wrap">
+                        <i data-lucide="mail" aria-hidden="true"></i>
+                        <input id="suEmail" type="email" autocomplete="email" placeholder="you@ntba.edu.gh" required>
+                    </div>
+                    <span class="field-hint">Use your school-issued email if you have one.</span>
+                    <span class="field-error" role="alert"></span>
+                </div>
+
+                <div class="field">
+                    <span class="field-label">Role</span>
+                    <div class="role-grid" role="radiogroup" aria-label="Role">
+                        <label class="role-card">
+                            <input type="radio" name="suRole" value="admin">
+                            <span class="role-inner">
+                                <i data-lucide="shield-check" aria-hidden="true"></i>
+                                <b>Administrator</b>
+                                <small>Full access</small>
+                            </span>
+                        </label>
+                        <label class="role-card">
+                            <input type="radio" name="suRole" value="teacher" checked>
+                            <span class="role-inner">
+                                <i data-lucide="presentation" aria-hidden="true"></i>
+                                <b>Teacher</b>
+                                <small>Classes &amp; results</small>
+                            </span>
+                        </label>
+                        <label class="role-card">
+                            <input type="radio" name="suRole" value="staff">
+                            <span class="role-inner">
+                                <i data-lucide="briefcase" aria-hidden="true"></i>
+                                <b>Support staff</b>
+                                <small>Fees &amp; records</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-grid two">
+                    <div class="field">
+                        <label for="suPassword">Password</label>
+                        <div class="input-wrap">
+                            <i data-lucide="lock" aria-hidden="true"></i>
+                            <input id="suPassword" type="password" autocomplete="new-password"
+                                placeholder="At least 8 characters" required>
+                            <button type="button" class="peek" data-peek="suPassword" aria-label="Show password"><i
+                                    data-lucide="eye" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="strength" id="pwStrength"><span></span><span></span><span></span><span></span></div>
+                        <span class="field-error" role="alert"></span>
+                    </div>
+                    <div class="field">
+                        <label for="suConfirm">Confirm password</label>
+                        <div class="input-wrap">
+                            <i data-lucide="lock" aria-hidden="true"></i>
+                            <input id="suConfirm" type="password" autocomplete="new-password"
+                                placeholder="Repeat password" required>
+                        </div>
+                        <span class="field-error" role="alert"></span>
+                    </div>
+                </div>
+
+                <label class="check">
+                    <input type="checkbox" id="suTerms">
+                    <span>I agree to the school's acceptable-use policy</span>
+                </label>
+                <span class="field-error block-error" id="termsError" role="alert"></span>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i data-lucide="user-plus" aria-hidden="true"></i>Create account
+                </button>
+            </form>
+
+            <p class="foot">
+                <i data-lucide="shield" aria-hidden="true"></i>
+                Access is monitored. Contact the school office if you need help signing in.
+            </p>
+        </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="check-circle-2"
+            aria-hidden="true"></i><span id="toastMsg"></span></div>
+
+    <script>
+        (() => {
+            "use strict";
+            const $ = (s, r = document) => r.querySelector(s);
+            const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+            /* ------------------------------------------------------------------
+               DEMO credential store. Replace this whole block with Clerk.
+               Passwords are visible in source on purpose — this is a UI demo.
+               ------------------------------------------------------------------ */
+            const ACCOUNTS = [
+                { email: "admin@ntba.edu.gh", password: "ntba2026", role: "admin", name: "Administrator" },
+                { email: "teacher@ntba.edu.gh", password: "ntba2026", role: "teacher", name: "Class Teacher" },
+                { email: "staff@ntba.edu.gh", password: "ntba2026", role: "staff", name: "Support Staff" }
+            ];
+            const SESSION_KEY = "ntba.session";
+
+            /* ---------------------------- helpers ---------------------------- */
+            function toast (msg, kind) {
+                const t = $("#toast");
+                $("#toastMsg").textContent = msg;
+                t.classList.toggle("warn", kind === "warn");
+                t.classList.add("show");
+                clearTimeout(toast._t);
+                toast._t = setTimeout(() => t.classList.remove("show"), 2800);
+            }
+
+            function setError (field, msg) {
+                const wrap = field.closest(".field") || field.parentElement;
+                wrap.classList.toggle("invalid", !!msg);
+                const el = wrap.querySelector(".field-error");
+                if (el) el.textContent = msg || "";
+                field.setAttribute("aria-invalid", msg ? "true" : "false");
+            }
+            function clearErrors (form) {
+                form.querySelectorAll(".field.invalid").forEach(f => f.classList.remove("invalid"));
+                form.querySelectorAll(".field-error").forEach(e => (e.textContent = ""));
+            }
+
+            /* ---------------------------- mode tabs ---------------------------- */
+            function setMode (mode) {
+                const isSignin = mode === "signin";
+                $$(".tab-btn").forEach(b => b.setAttribute("aria-selected", String(b.dataset.mode === mode)));
+                $("#panel-signin").hidden = !isSignin;
+                $("#panel-signup").hidden = isSignin;
+                $("#formTitle").textContent = isSignin ? "Welcome back" : "Create your account";
+                $("#formSub").textContent = isSignin
+                    ? "Sign in to your staff account to continue."
+                    : "Register as a staff member. An administrator will confirm your access.";
+            }
+            $$(".tab-btn").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
+
+            /* ---------------------------- password peek ---------------------------- */
+            $$(".peek").forEach(btn => btn.addEventListener("click", () => {
+                const input = $("#" + btn.dataset.peek);
+                const showing = input.type === "text";
+                input.type = showing ? "password" : "text";
+                btn.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+                btn.classList.toggle("active", !showing);
+            }));
+
+            /* ---------------------------- password strength ---------------------------- */
+            function strength (pw) {
+                let s = 0;
+                if (pw.length >= 8) s++;
+                if (/[A-Z]/.test(pw) && /[a-z]/.test(pw)) s++;
+                if (/\d/.test(pw)) s++;
+                if (/[^A-Za-z0-9]/.test(pw)) s++;
+                return s;
+            }
+            const strengthBars = $$("#pwStrength span");
+            $("#suPassword").addEventListener("input", e => {
+                const s = strength(e.target.value);
+                strengthBars.forEach((b, i) => b.classList.toggle("on", i < s));
+                $("#pwStrength").dataset.level = s;
+            });
+
+            /* ---------------------------- sign in ---------------------------- */
+            $("#panel-signin").addEventListener("submit", e => {
+                e.preventDefault();
+                clearErrors(e.target);
+
+                const email = $("#siEmail").value.trim().toLowerCase();
+                const pw = $("#siPassword").value;
+                let ok = true;
+
+                if (!email) { setError($("#siEmail"), "Email is required"); ok = false; }
+                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError($("#siEmail"), "Enter a valid email"); ok = false; }
+
+                if (!pw) { setError($("#siPassword"), "Password is required"); ok = false; }
+
+                if (!ok) { toast("Please fix the highlighted fields", "warn"); return; }
+
+                const found = ACCOUNTS.find(a => a.email === email && a.password === pw);
+                if (!found)
+                {
+                    setError($("#siPassword"), "Email or password is incorrect");
+                    toast("Sign-in failed", "warn");
+                    return;
+                }
+
+                const session = {
+                    email: found.email,
+                    name: found.name,
+                    role: found.role,
+                    at: new Date().toISOString()
+                };
+                try
+                {
+                    (($("#siRemember").checked) ? localStorage : sessionStorage).setItem(SESSION_KEY, JSON.stringify(session));
+                } catch { }
+
+                toast(`Signed in as ${found.role}`);
+                setTimeout(() => (location.href = "index.html"), 700);
+            });
+
+            /* ---------------------------- sign up ---------------------------- */
+            $("#panel-signup").addEventListener("submit", e => {
+                e.preventDefault();
+                clearErrors(e.target);
+                let ok = true;
+
+                if (!$("#suFirst").value.trim()) { setError($("#suFirst"), "First name is required"); ok = false; }
+                if (!$("#suLast").value.trim()) { setError($("#suLast"), "Last name is required"); ok = false; }
+
+                const email = $("#suEmail").value.trim().toLowerCase();
+                if (!email) { setError($("#suEmail"), "Email is required"); ok = false; }
+                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setError($("#suEmail"), "Enter a valid email"); ok = false; }
+
+                const pw = $("#suPassword").value;
+                const cfm = $("#suConfirm").value;
+                if (pw.length < 8) { setError($("#suPassword"), "Use at least 8 characters"); ok = false; }
+                else if (strength(pw) < 2) { setError($("#suPassword"), "Add uppercase, numbers or symbols"); ok = false; }
+                if (!cfm) { setError($("#suConfirm"), "Confirm your password"); ok = false; }
+                else if (pw !== cfm) { setError($("#suConfirm"), "Passwords do not match"); ok = false; }
+
+                if (!$("#suTerms").checked) { $("#termsError").textContent = "Please accept the policy to continue"; ok = false; }
+                else $("#termsError").textContent = "";
+
+                if (!ok) { toast("Please fix the highlighted fields", "warn"); return; }
+
+                if (ACCOUNTS.some(a => a.email === email))
+                {
+                    setError($("#suEmail"), "An account with this email already exists");
+                    toast("That email is already registered", "warn");
+                    return;
+                }
+
+                const role = $('input[name="suRole"]:checked')?.value || "teacher";
+                ACCOUNTS.push({ email, password: pw, role, name: `${$("#suFirst").value.trim()} ${$("#suLast").value.trim()}` });
+
+                toast("Account created — signing you in");
+                const session = { email, name: `${$("#suFirst").value.trim()} ${$("#suLast").value.trim()}`, role, at: new Date().toISOString() };
+                try { localStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch { }
+                setTimeout(() => (location.href = "index.html"), 800);
+            });
+
+            /* ---------------------------- demo chips ---------------------------- */
+            $$(".demo-chip").forEach(chip => chip.addEventListener("click", () => {
+                $("#siEmail").value = chip.dataset.email;
+                $("#siPassword").value = "ntba2026";
+                $("#siPassword").focus();
+            }));
+
+            /* ---------------------------- forgot ---------------------------- */
+            $("#forgotLink").addEventListener("click", e => {
+                e.preventDefault();
+                toast("Contact the school office to reset your password");
+            });
+
+            /* ---------------------------- init ---------------------------- */
+            if (window.lucide) lucide.createIcons();
+            if (location.hash === "#signup") setMode("signup");
+        })();
+    </script>
+</body>
+
+</html>
