@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Content Editor — New Testament Baptist Academy</title><meta name="theme-color" content="#073a78"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23073a78'/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://unpkg.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Kalam:wght@700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="editor.css"><script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.js"></script></head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark"><i data-lucide="graduation-cap" aria-hidden="true"></i></span><span><b>New Testament<br>Baptist Academy</b><strong>Creche – Primary</strong><small>Learn&nbsp; • &nbsp;Grow&nbsp; • &nbsp;Succeed</small></span></a>
+  <label class="search"><i data-lucide="search" aria-hidden="true"></i><input placeholder="Search content, announcements, media..." aria-label="Search content"></label>
+  <div class="top-actions">
+    <button class="bell" aria-label="Notifications, 3 unread"><i data-lucide="bell" aria-hidden="true"></i><em aria-hidden="true">3</em></button>
+    <div class="profile"><span class="avatar"><i data-lucide="user-round" aria-hidden="true"></i></span><span><b>Admin</b><small>Main Editor</small></span><i data-lucide="chevron-down" aria-hidden="true"></i></div>
+  </div>
+</header>
+
+<aside class="sidebar">
+  <nav aria-label="Main">
+    <a href="index.html"><i data-lucide="house" aria-hidden="true"></i>Dashboard</a>
+    <a href="#"><i data-lucide="users-round" aria-hidden="true"></i>Students</a>
+    <a href="#"><i data-lucide="user-round-plus" aria-hidden="true"></i>Teachers</a>
+    <a href="#"><i data-lucide="contact-round" aria-hidden="true"></i>Classes</a>
+    <a href="#"><i data-lucide="book-open" aria-hidden="true"></i>Subjects</a>
+    <a href="#"><i data-lucide="calendar-check" aria-hidden="true"></i>Attendance</a>
+    <a href="#"><i data-lucide="file-badge" aria-hidden="true"></i>Examinations</a>
+    <a href="#"><i data-lucide="chart-no-axes-column-increasing" aria-hidden="true"></i>Results</a>
+    <a href="#"><i data-lucide="coins" aria-hidden="true"></i>Fees &amp; Payments</a>
+    <a href="#"><i data-lucide="file-text" aria-hidden="true"></i>Reports</a>
+    <a class="selected" href="editor.html" aria-current="page"><i data-lucide="square-pen" aria-hidden="true"></i>Content Editor</a>
+    <a href="#"><i data-lucide="settings" aria-hidden="true"></i>Settings</a>
+  </nav>
+  <div class="sidebar-quote" aria-hidden="true">Faith<br>Learning<br>Character<br>Service<span></span></div>
+</aside>
+
+<main class="workspace">
+  <div class="dashboard-grid">
+
+    <section class="main-column">
+
+      <header class="editor-head">
+        <div class="titles">
+          <h1><i data-lucide="square-pen" aria-hidden="true"></i>Content Editor <span class="pill">Main Editor</span></h1>
+          <p>Edit the announcements, welcome banner, quick actions and school details that appear on the dashboard.</p>
+        </div>
+        <div class="head-actions">
+          <span class="pill saved" id="statusPill" role="status">All changes saved</span>
+          <button class="btn btn-ghost" id="discardBtn"><i data-lucide="undo-2" aria-hidden="true"></i>Discard</button>
+          <button class="btn btn-primary" id="publishBtn"><i data-lucide="upload-cloud" aria-hidden="true"></i>Save &amp; Publish</button>
+        </div>
+      </header>
+
+      <section class="card card-pad">
+        <div class="tabs" role="tablist" aria-label="Editor sections">
+          <button class="tab-btn" role="tab" id="tab-ann"     data-tab="ann"     aria-selected="true"  aria-controls="panel-ann"><i data-lucide="megaphone" aria-hidden="true"></i>Announcements</button>
+          <button class="tab-btn" role="tab" id="tab-welcome" data-tab="welcome" aria-selected="false" aria-controls="panel-welcome"><i data-lucide="layout-template" aria-hidden="true"></i>Welcome &amp; Hero</button>
+          <button class="tab-btn" role="tab" id="tab-actions" data-tab="actions" aria-selected="false" aria-controls="panel-actions"><i data-lucide="zap" aria-hidden="true"></i>Quick Actions</button>
+          <button class="tab-btn" role="tab" id="tab-school"  data-tab="school"  aria-selected="false" aria-controls="panel-school"><i data-lucide="school" aria-hidden="true"></i>School Info</button>
+        </div>
+
+        <!-- ANNOUNCEMENTS -->
+        <div class="tab-panel" id="panel-ann" role="tabpanel" aria-labelledby="tab-ann">
+          <div class="section-title">
+            <h2><i data-lucide="megaphone" aria-hidden="true"></i>Latest Announcements</h2>
+            <button class="btn btn-primary" id="addAnn"><i data-lucide="plus" aria-hidden="true"></i>Add Announcement</button>
+          </div>
+          <div class="ann-list" id="annList"></div>
+
+          <div class="editor-form" id="annForm" hidden>
+            <h3><i data-lucide="square-pen" aria-hidden="true"></i><span id="annFormTitle">New announcement</span></h3>
+            <div class="form-grid">
+              <div class="field">
+                <label for="annTitle">Title</label>
+                <input id="annTitle" maxlength="60" placeholder="e.g. Parent-Teacher Meeting" autocomplete="off">
+                <span class="counter" id="annTitleCount">0 / 60</span>
+              </div>
+              <div class="field">
+                <label for="annBody">Message</label>
+                <textarea id="annBody" maxlength="140" placeholder="Short message shown under the title…"></textarea>
+                <span class="counter" id="annBodyCount">0 / 140</span>
+              </div>
+              <div class="form-grid two">
+                <div class="field">
+                  <label for="annDate">Date shown on dashboard</label>
+                  <input id="annDate" type="date">
+                </div>
+                <div class="field">
+                  <span class="field-label" id="toneLabel">Priority colour</span>
+                  <div class="swatches" role="group" aria-labelledby="toneLabel">
+                    <button type="button" class="swatch red"   data-tone="red"   aria-pressed="true"  aria-label="Urgent"></button>
+                    <button type="button" class="swatch blue"  data-tone="blue"  aria-pressed="false" aria-label="Information"></button>
+                    <button type="button" class="swatch green" data-tone="green" aria-pressed="false" aria-label="Notice"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-ghost" id="annCancel">Cancel</button>
+              <button class="btn btn-primary" id="annSave"><i data-lucide="check" aria-hidden="true"></i>Save announcement</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- WELCOME -->
+        <div class="tab-panel" id="panel-welcome" role="tabpanel" aria-labelledby="tab-welcome" hidden>
+          <div class="section-title"><h2><i data-lucide="layout-template" aria-hidden="true"></i>Welcome &amp; Hero Banner</h2></div>
+          <div class="form-grid">
+            <div class="form-grid two">
+              <div class="field"><label for="wGreet">Greeting line</label><input id="wGreet" data-bind="welcome.greet" autocomplete="off"></div>
+              <div class="field"><label for="wAccent">Accent word <span class="hint">(shown in blue)</span></label><input id="wAccent" data-bind="welcome.accent" autocomplete="off"></div>
+            </div>
+            <div class="field"><label for="wBody">Supporting text</label><textarea id="wBody" data-bind="welcome.body" maxlength="160"></textarea></div>
+            <div class="form-grid two">
+              <div class="field"><label for="wSlogan1">Slogan — line 1</label><input id="wSlogan1" data-bind="welcome.slogan1" autocomplete="off"></div>
+              <div class="field"><label for="wSlogan2">Slogan — line 2</label><input id="wSlogan2" data-bind="welcome.slogan2" autocomplete="off"></div>
+            </div>
+            <div class="field">
+              <label for="wPhoto">Campus photo URL <span class="hint">(leave blank to use the default)</span></label>
+              <input id="wPhoto" data-bind="welcome.photo" placeholder="https://…" autocomplete="off">
+            </div>
+          </div>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="tab-panel" id="panel-actions" role="tabpanel" aria-labelledby="tab-actions" hidden>
+          <div class="section-title"><h2><i data-lucide="zap" aria-hidden="true"></i>Quick Action Buttons</h2></div>
+          <div class="qa-editor" id="qaEditor"></div>
+        </div>
+
+        <!-- SCHOOL INFO -->
+        <div class="tab-panel" id="panel-school" role="tabpanel" aria-labelledby="tab-school" hidden>
+          <div class="section-title"><h2><i data-lucide="school" aria-hidden="true"></i>School Information</h2></div>
+          <div class="form-grid two">
+            <div class="field"><label for="sName">School name</label><input id="sName" data-bind="school.name" autocomplete="off"></div>
+            <div class="field"><label for="sSub">Level / subtitle</label><input id="sSub" data-bind="school.sub" autocomplete="off"></div>
+            <div class="field"><label for="sMotto">Motto</label><input id="sMotto" data-bind="school.motto" autocomplete="off"></div>
+            <div class="field"><label for="sYear">Academic year</label><input id="sYear" data-bind="school.year" autocomplete="off"></div>
+            <div class="field"><label for="sTerm">Current term</label>
+              <select id="sTerm" data-bind="school.term">
+                <option>Term 1</option><option>Term 2</option><option>Term 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <aside class="right-column">
+      <section class="card card-pad">
+        <div class="section-title">
+          <h2><i data-lucide="eye" aria-hidden="true"></i>Live Preview</h2>
+          <span class="pill" id="previewLabel">Announcements</span>
+        </div>
+        <div class="preview-frame" id="preview"></div>
+      </section>
+
+      <section class="card card-pad">
+        <div class="section-title"><h2><i data-lucide="history" aria-hidden="true"></i>Publishing</h2></div>
+        <dl class="pub-meta">
+          <div><dt>Status</dt><dd id="pubStatus">Published</dd></div>
+          <div><dt>Last published</dt><dd id="pubWhen">14 Oct 2026, 09:12 AM</dd></div>
+          <div><dt>Published by</dt><dd>Admin · Main Editor</dd></div>
+        </dl>
+        <div class="section-title" style="margin-top:16px"><h2><i data-lucide="git-commit-horizontal" aria-hidden="true"></i>Recent Revisions</h2></div>
+        <div class="revisions" id="revisions"></div>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="check-circle-2" aria-hidden="true"></i><span id="toastMsg">Saved</span></div>
+
+<script>
+(() => {
+  "use strict";
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  const clone = o => JSON.parse(JSON.stringify(o));
+  const uid = () => Math.random().toString(36).slice(2, 9);
+  const STORE = "ntba.editor.draft.v1";
+
+  const DEFAULTS = {
+    announcements: [
+      { id: "a1", tone: "red",   title: "School Fees Reminder",   body: "Kindly pay your child's fees before the end of the month.", date: "2026-10-10" },
+      { id: "a2", tone: "blue",  title: "Parent-Teacher Meeting", body: "Scheduled for Saturday, 25th Oct 2026 at 9:00 AM.",        date: "2026-10-08" },
+      { id: "a3", tone: "green", title: "End of Term Exams",      body: "Will take place from 3rd – 7th November 2026. Prepare well!", date: "2026-10-05" }
+    ],
+    welcome: {
+      greet: "Welcome Back,", accent: "Admin!",
+      body: "Manage your school efficiently and keep everything running smoothly.",
+      slogan1: "Quality Education", slogan2: "for a Better Tomorrow",
+      photo: "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1100&q=85"
+    },
+    actions: [
+      { id: "q1", tone: "blue",   label: "Add Student",    sub: "Register a new student", icon: "user-round-plus" },
+      { id: "q2", tone: "green",  label: "Add Teacher",    sub: "Register a new teacher", icon: "presentation" },
+      { id: "q3", tone: "yellow", label: "Create Class",   sub: "Set up a new class",     icon: "users-round" },
+      { id: "q4", tone: "purple", label: "Record Payment", sub: "Add fee payment",        icon: "file-text" }
+    ],
+    school: {
+      name: "New Testament Baptist Academy",
+      sub:  "Creche – Primary",
+      motto: "Learn • Grow • Succeed",
+      year: "2026 / 2027",
+      term: "Term 1"
+    }
+  };
+
+  let state = clone(DEFAULTS);
+  let published = clone(DEFAULTS);
+  let dirty = false;
+  let editingId = null;
+  let activeTab = "ann";
+  let tone = "red";
+
+  try {
+    const raw = localStorage.getItem(STORE);
+    if (raw) { const s = JSON.parse(raw); state = Object.assign(clone(DEFAULTS), s); }
+  } catch { /* file:// or private mode — run in memory */ }
+
+  function persist() {
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch {}
+  }
+
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  function fmtDate(iso) {
+    if (!iso) return "—";
+    const [y, m, d] = iso.split("-").map(Number);
+    return `${MONTHS[m - 1]} ${d}, ${y}`;
+  }
+  const todayISO = () => new Date().toISOString().slice(0, 10);
+  const getPath = p => p.split(".").reduce((o, k) => (o ? o[k] : undefined), state);
+  function setPath(p, v) {
+    const ks = p.split("."); const last = ks.pop();
+    let o = state; ks.forEach(k => (o = o[k])); o[last] = v;
+  }
+
+  function toast(msg) {
+    const t = $("#toast");
+    $("#toastMsg").textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => t.classList.remove("show"), 2600);
+  }
+
+  function setDirty(v) {
+    dirty = v;
+    const pill = $("#statusPill");
+    pill.textContent = v ? "Unsaved changes" : "All changes saved";
+    pill.className = "pill " + (v ? "dirty" : "saved");
+    $("#publishBtn").disabled = !v;
+    $("#pubStatus").textContent = v ? "Draft" : "Published";
+  }
+
+  function renderList() {
+    const list = $("#annList");
+    if (!state.announcements.length) {
+      list.innerHTML = `<div class="empty"><i data-lucide="inbox" aria-hidden="true"></i><p>No announcements yet. Add one to show it on the dashboard.</p></div>`;
+    } else {
+      list.innerHTML = state.announcements.map(a => `
+        <article class="ann-item ${a.id === editingId ? "editing" : ""}">
+          <span class="dot ${a.tone === "red" ? "red" : a.tone === "blue" ? "blue-dot" : "green-dot"}" aria-hidden="true"></span>
+          <div>
+            <b>${esc(a.title)}</b>
+            <p>${esc(a.body)}</p>
+            <time datetime="${esc(a.date)}">${fmtDate(a.date)}</time>
+          </div>
+          <div class="ann-tools">
+            <button class="icon-btn" data-edit="${a.id}" aria-label="Edit ${esc(a.title)}"><i data-lucide="square-pen" aria-hidden="true"></i></button>
+            <button class="icon-btn del" data-del="${a.id}" aria-label="Delete ${esc(a.title)}"><i data-lucide="trash-2" aria-hidden="true"></i></button>
+          </div>
+        </article>`).join("");
+    }
+    if (window.lucide) lucide.createIcons();
+  }
+
+  function renderActions() {
+    $("#qaEditor").innerHTML = state.actions.map((q, i) => `
+      <div class="qa-row">
+        <span class="qa-swatch ${q.tone}" aria-hidden="true"></span>
+        <div class="field">
+          <label for="qa-l-${i}">Button label</label>
+          <input id="qa-l-${i}" value="${esc(q.label)}" data-qa="${i}" data-key="label" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="qa-s-${i}">Description</label>
+          <input id="qa-s-${i}" value="${esc(q.sub)}" data-qa="${i}" data-key="sub" autocomplete="off">
+        </div>
+      </div>`).join("");
+  }
+
+  function renderPreview() {
+    const box = $("#preview");
+    const labels = { ann: "Announcements", welcome: "Welcome Banner", actions: "Quick Actions", school: "School Info" };
+    $("#previewLabel").textContent = labels[activeTab];
+
+    if (activeTab === "ann") {
+      box.innerHTML = state.announcements.length
+        ? state.announcements.map(a => `
+            <article class="announcement">
+              <span class="dot ${a.tone === "red" ? "red" : a.tone === "blue" ? "blue-dot" : "green-dot"}" aria-hidden="true"></span>
+              <div><b>${esc(a.title)}</b><p>${esc(a.body)}</p></div>
+              <time datetime="${esc(a.date)}">${fmtDate(a.date)}</time>
+            </article>`).join("")
+        : `<div class="empty"><i data-lucide="inbox" aria-hidden="true"></i><p>Nothing to preview.</p></div>`;
+    }
+
+    if (activeTab === "welcome") {
+      box.innerHTML = `
+        <div class="mini-welcome" ${state.welcome.photo ? `style="--photo:url('${esc(state.welcome.photo)}')"` : ""}>
+          <div class="mini-copy">
+            <b>${esc(state.welcome.greet)}<br><em>${esc(state.welcome.accent)}</em></b>
+            <p>${esc(state.welcome.body)}</p>
+          </div>
+          <span class="mini-slogan">${esc(state.welcome.slogan1)}<br>${esc(state.welcome.slogan2)}</span>
+        </div>`;
+    }
+
+    if (activeTab === "actions") {
+      box.innerHTML = `<div class="mini-actions">${state.actions.map(q => `
+        <div class="mini-action ${q.tone}">
+          <i data-lucide="${esc(q.icon)}" aria-hidden="true"></i>
+          <b>${esc(q.label)}</b><small>${esc(q.sub)}</small>
+        </div>`).join("")}</div>`;
+    }
+
+    if (activeTab === "school") {
+      box.innerHTML = `
+        <div class="mini-brand">
+          <span class="mini-mark"><i data-lucide="graduation-cap" aria-hidden="true"></i></span>
+          <div>
+            <b>${esc(state.school.name)}</b>
+            <strong>${esc(state.school.sub)}</strong>
+            <small>${esc(state.school.motto)}</small>
+          </div>
+        </div>
+        <dl class="pub-meta" style="margin-top:14px">
+          <div><dt>Academic year</dt><dd>${esc(state.school.year)}</dd></div>
+          <div><dt>Current term</dt><dd>${esc(state.school.term)}</dd></div>
+        </dl>`;
+    }
+
+    if (window.lucide) lucide.createIcons();
+  }
+
+  function renderRevisions() {
+    const items = [
+      { who: "Admin", what: "Updated announcements", when: "14 Oct 2026, 09:12 AM" },
+      { who: "Admin", what: "Changed term to Term 1", when: "12 Oct 2026, 02:40 PM" },
+      { who: "Admin", what: "Published initial dashboard", when: "10 Oct 2026, 08:00 AM" }
+    ];
+    $("#revisions").innerHTML = items.map(r => `
+      <div class="revision">
+        <span class="rev-dot" aria-hidden="true"></span>
+        <div><b>${esc(r.what)}</b><small>${esc(r.who)} · ${esc(r.when)}</small></div>
+      </div>`).join("");
+  }
+
+  function renderAll() { renderList(); renderActions(); renderPreview(); }
+
+  function setTab(name) {
+    activeTab = name;
+    $$(".tab-btn").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
+    $$(".tab-panel").forEach(p => (p.hidden = p.id !== "panel-" + name));
+    renderPreview();
+  }
+  $$(".tab-btn").forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
+
+  function openForm(id) {
+    editingId = id || null;
+    const a = id ? state.announcements.find(x => x.id === id) : null;
+    $("#annFormTitle").textContent = a ? "Edit announcement" : "New announcement";
+    $("#annTitle").value = a ? a.title : "";
+    $("#annBody").value  = a ? a.body  : "";
+    $("#annDate").value  = a ? a.date  : todayISO();
+    tone = a ? a.tone : "red";
+    $$(".swatch").forEach(s => s.setAttribute("aria-pressed", String(s.dataset.tone === tone)));
+    $("#annForm").hidden = false;
+    renderList();
+    $("#annTitle").focus();
+  }
+  function closeForm() {
+    editingId = null;
+    $("#annForm").hidden = true;
+    renderList();
+  }
+  function updateCounters() {
+    const t = $("#annTitle"), b = $("#annBody");
+    $("#annTitleCount").textContent = `${t.value.length} / 60`;
+    $("#annBodyCount").textContent  = `${b.value.length} / 140`;
+    $("#annTitleCount").classList.toggle("over", t.value.length >= 60);
+    $("#annBodyCount").classList.toggle("over", b.value.length >= 140);
+  }
+
+  $("#addAnn").addEventListener("click", () => openForm(null));
+  $("#annCancel").addEventListener("click", closeForm);
+  $("#annTitle").addEventListener("input", updateCounters);
+  $("#annBody").addEventListener("input", updateCounters);
+
+  $$(".swatch").forEach(s => s.addEventListener("click", () => {
+    tone = s.dataset.tone;
+    $$(".swatch").forEach(x => x.setAttribute("aria-pressed", String(x === s)));
+  }));
+
+  $("#annSave").addEventListener("click", () => {
+    const title = $("#annTitle").value.trim();
+    const body  = $("#annBody").value.trim();
+    const date  = $("#annDate").value || todayISO();
+    if (!title) { $("#annTitle").focus(); toast("Title is required"); return; }
+    if (!body)  { $("#annBody").focus();  toast("Message is required"); return; }
+
+    if (editingId) {
+      const a = state.announcements.find(x => x.id === editingId);
+      Object.assign(a, { title, body, date, tone });
+    } else {
+      state.announcements.unshift({ id: uid(), title, body, date, tone });
+    }
+    closeForm(); persist(); setDirty(true); renderAll();
+    toast(editingId ? "Announcement updated" : "Announcement added");
+  });
+
+  $("#annList").addEventListener("click", e => {
+    const ed = e.target.closest("[data-edit]");
+    const dl = e.target.closest("[data-del]");
+    if (ed) openForm(ed.dataset.edit);
+    if (dl) {
+      const a = state.announcements.find(x => x.id === dl.dataset.del);
+      if (!confirm(`Delete "${a.title}"?`)) return;
+      state.announcements = state.announcements.filter(x => x.id !== dl.dataset.del);
+      if (editingId === dl.dataset.del) closeForm();
+      persist(); setDirty(true); renderAll();
+      toast("Announcement deleted");
+    }
+  });
+
+  $$("[data-bind]").forEach(el => el.addEventListener("input", () => {
+    setPath(el.dataset.bind, el.value);
+    persist(); setDirty(true); renderPreview();
+  }));
+
+  $("#qaEditor").addEventListener("input", e => {
+    const el = e.target.closest("[data-qa]");
+    if (!el) return;
+    state.actions[+el.dataset.qa][el.dataset.key] = el.value;
+    persist(); setDirty(true); renderPreview();
+  });
+
+  $("#publishBtn").addEventListener("click", () => {
+    published = clone(state);
+    setDirty(false);
+    const d = new Date();
+    $("#pubWhen").textContent = `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}, ${d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
+    $("#revisions").insertAdjacentHTML("afterbegin",
+      `<div class="revision"><span class="rev-dot" aria-hidden="true"></span><div><b>Published content updates</b><small>Admin · just now</small></div></div>`);
+    toast("Changes published to dashboard");
+  });
+
+  $("#discardBtn").addEventListener("click", () => {
+    if (!dirty) { toast("Nothing to discard"); return; }
+    if (!confirm("Discard all unsaved changes?")) return;
+    state = clone(published);
+    persist(); setDirty(false); syncFields(); renderAll();
+    toast("Changes discarded");
+  });
+
+  function syncFields() {
+    $$("[data-bind]").forEach(el => { const v = getPath(el.dataset.bind); if (v !== undefined) el.value = v; });
+    renderActions();
+  }
+
+  window.addEventListener("beforeunload", e => {
+    if (!dirty) return;
+    e.preventDefault(); e.returnValue = "";
+  });
+
+  updateCounters();
+  setDirty(false);
+  syncFields();
+  renderAll();
+  renderRevisions();
+})();
+</script>
+</body></html>
