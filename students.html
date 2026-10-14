@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Add Student — New Testament Baptist Academy</title><meta name="theme-color" content="#073a78"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23073a78'/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://unpkg.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Kalam:wght@700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="students.css"><script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.js"></script></head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark"><i data-lucide="graduation-cap" aria-hidden="true"></i></span><span><b>New Testament<br>Baptist Academy</b><strong>Creche – Primary</strong><small>Learn&nbsp; • &nbsp;Grow&nbsp; • &nbsp;Succeed</small></span></a>
+  <label class="search"><i data-lucide="search" aria-hidden="true"></i><input placeholder="Search students, staff, classes..." aria-label="Search students, staff and classes"></label>
+  <div class="top-actions">
+    <button class="bell" aria-label="Notifications, 3 unread"><i data-lucide="bell" aria-hidden="true"></i><em aria-hidden="true">3</em></button>
+    <div class="profile"><span class="avatar"><i data-lucide="user-round" aria-hidden="true"></i></span><span><b>Admin</b><small>Administrator</small></span><i data-lucide="chevron-down" aria-hidden="true"></i></div>
+  </div>
+</header>
+
+<aside class="sidebar">
+  <nav aria-label="Main">
+    <a href="index.html"><i data-lucide="house" aria-hidden="true"></i>Dashboard</a>
+    <a class="selected" href="students.html" aria-current="page"><i data-lucide="users-round" aria-hidden="true"></i>Students</a>
+    <a href="#"><i data-lucide="user-round-plus" aria-hidden="true"></i>Teachers</a>
+    <a href="#"><i data-lucide="contact-round" aria-hidden="true"></i>Classes</a>
+    <a href="#"><i data-lucide="book-open" aria-hidden="true"></i>Subjects</a>
+    <a href="#"><i data-lucide="calendar-check" aria-hidden="true"></i>Attendance</a>
+    <a href="#"><i data-lucide="file-badge" aria-hidden="true"></i>Examinations</a>
+    <a href="#"><i data-lucide="chart-no-axes-column-increasing" aria-hidden="true"></i>Results</a>
+    <a href="#"><i data-lucide="coins" aria-hidden="true"></i>Fees &amp; Payments</a>
+    <a href="#"><i data-lucide="file-text" aria-hidden="true"></i>Reports</a>
+    <a href="editor.html"><i data-lucide="square-pen" aria-hidden="true"></i>Content Editor</a>
+    <a href="#"><i data-lucide="settings" aria-hidden="true"></i>Settings</a>
+  </nav>
+  <div class="sidebar-quote" aria-hidden="true">Faith<br>Learning<br>Character<br>Service<span></span></div>
+</aside>
+
+<main class="workspace">
+  <div class="dashboard-grid">
+
+    <section class="main-column">
+
+      <header class="page-head">
+        <div class="titles">
+          <p class="crumbs"><a href="index.html">Dashboard</a><span>›</span><a href="#">Students</a><span>›</span><b>Add Student</b></p>
+          <h1><i data-lucide="user-round-plus" aria-hidden="true"></i>Register a New Student</h1>
+          <p>Fill in the details below. Fields marked <span class="req">*</span> are required.</p>
+        </div>
+        <div class="head-actions">
+          <span class="pill saved" id="statusPill" role="status">New record</span>
+        </div>
+      </header>
+
+      <form id="studentForm" class="card card-pad" novalidate>
+
+        <!-- ============ 1. PERSONAL DETAILS ============ -->
+        <fieldset class="form-section" data-section="personal">
+          <legend>
+            <span class="step">1</span>
+            <span><b>Personal details</b><small>Identity and basic information</small></span>
+          </legend>
+
+          <div class="form-grid two">
+            <div class="field">
+              <label for="firstName">First name <span class="req">*</span></label>
+              <input id="firstName" name="firstName" autocomplete="given-name" required>
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="field">
+              <label for="lastName">Last name <span class="req">*</span></label>
+              <input id="lastName" name="lastName" autocomplete="family-name" required>
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="form-grid two">
+            <div class="field">
+              <label for="middleName">Middle name <span class="hint">(optional)</span></label>
+              <input id="middleName" name="middleName" autocomplete="additional-name">
+            </div>
+            <div class="field">
+              <label for="nationality">Nationality</label>
+              <input id="nationality" name="nationality" value="Ghanaian" autocomplete="country-name">
+            </div>
+          </div>
+
+          <div class="form-grid two">
+            <div class="field">
+              <label for="dob">Date of birth <span class="req">*</span></label>
+              <input id="dob" name="dob" type="date" required>
+              <span class="field-hint" id="ageHint">Age will appear here</span>
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="field">
+              <span class="field-label">Gender <span class="req">*</span></span>
+              <div class="radio-row" role="radiogroup" aria-label="Gender">
+                <label class="radio"><input type="radio" name="gender" value="Male"><span><i data-lucide="user" aria-hidden="true"></i>Male</span></label>
+                <label class="radio"><input type="radio" name="gender" value="Female"><span><i data-lucide="user" aria-hidden="true"></i>Female</span></label>
+              </div>
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="photo-row">
+            <div class="photo-preview" id="photoPreview" aria-hidden="true"><span>?</span></div>
+            <div class="photo-controls">
+              <span class="field-label">Passport photo <span class="hint">(optional, max 500 KB)</span></span>
+              <div class="photo-btns">
+                <label class="btn btn-ghost" for="photoInput"><i data-lucide="image-plus" aria-hidden="true"></i>Upload photo</label>
+                <input type="file" id="photoInput" accept="image/*" hidden>
+                <button type="button" class="btn btn-ghost" id="photoClear" disabled><i data-lucide="x" aria-hidden="true"></i>Remove</button>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ============ 2. ENROLLMENT ============ -->
+        <fieldset class="form-section" data-section="enroll">
+          <legend>
+            <span class="step">2</span>
+            <span><b>Enrollment</b><small>Class placement and academic period</small></span>
+          </legend>
+
+          <div class="form-grid two">
+            <div class="field">
+              <label for="studentId">Student ID</label>
+              <input id="studentId" name="studentId" readonly class="readonly" aria-describedby="idHelp">
+              <span class="field-hint" id="idHelp">Generated automatically. Cannot be edited.</span>
+            </div>
+            <div class="field">
+              <label for="klass">Class <span class="req">*</span></label>
+              <select id="klass" name="klass" required>
+                <option value="">Select class…</option>
+                <optgroup label="Early Years">
+                  <option>Creche</option>
+                  <option>Nursery 1</option>
+                  <option>Nursery 2</option>
+                  <option>KG 1</option>
+                  <option>KG 2</option>
+                </optgroup>
+                <optgroup label="Primary">
+                  <option>P.1</option><option>P.2</option><option>P.3</option>
+                  <option>P.4</option><option>P.5</option><option>P.6</option>
+                </optgroup>
+              </select>
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="form-grid three">
+            <div class="field">
+              <label for="academicYear">Academic year</label>
+              <input id="academicYear" name="academicYear" value="2026 / 2027">
+            </div>
+            <div class="field">
+              <label for="term">Term</label>
+              <select id="term" name="term">
+                <option>Term 1</option><option>Term 2</option><option>Term 3</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="admissionDate">Admission date <span class="req">*</span></label>
+              <input id="admissionDate" name="admissionDate" type="date" required>
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="form-grid two">
+            <div class="field">
+              <label for="house">House / Group <span class="hint">(optional)</span></label>
+              <select id="house" name="house">
+                <option value="">Not assigned</option>
+                <option>Red House</option><option>Blue House</option>
+                <option>Green House</option><option>Yellow House</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="transport">Transport <span class="hint">(optional)</span></label>
+              <select id="transport" name="transport">
+                <option value="">Not enrolled</option>
+                <option>School bus — morning only</option>
+                <option>School bus — both ways</option>
+                <option>Parent drop-off</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ============ 3. GUARDIAN ============ -->
+        <fieldset class="form-section" data-section="guardian">
+          <legend>
+            <span class="step">3</span>
+            <span><b>Parent / Guardian</b><small>Primary contact for this student</small></span>
+          </legend>
+
+          <div class="form-grid two">
+            <div class="field">
+              <label for="guardianName">Guardian full name <span class="req">*</span></label>
+              <input id="guardianName" name="guardianName" required>
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="field">
+              <label for="guardianRelation">Relationship <span class="req">*</span></label>
+              <select id="guardianRelation" name="guardianRelation" required>
+                <option value="">Select…</option>
+                <option>Father</option><option>Mother</option>
+                <option>Grandparent</option><option>Guardian</option><option>Other</option>
+              </select>
+              <span class="field-error" role="alert"></span>
+            </div>
+          </div>
+
+          <div class="form-grid two">
+            <div class="field">
+              <label for="guardianPhone">Phone number <span class="req">*</span></label>
+              <input id="guardianPhone" name="guardianPhone" type="tel" placeholder="+233 24 000 0000" required autocomplete="tel">
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="field">
+              <label for="guardianAltPhone">Alternate phone <span class="hint">(optional)</span></label>
+              <input id="guardianAltPhone" name="guardianAltPhone" type="tel" placeholder="+233 20 000 0000" autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-grid two">
+            <div class="field">
+              <label for="guardianEmail">Email <span class="hint">(optional)</span></label>
+              <input id="guardianEmail" name="guardianEmail" type="email" autocomplete="email">
+              <span class="field-error" role="alert"></span>
+            </div>
+            <div class="field">
+              <label for="guardianJob">Occupation <span class="hint">(optional)</span></label>
+              <input id="guardianJob" name="guardianJob">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="address">Residential address <span class="hint">(optional)</span></label>
+            <input id="address" name="address" placeholder="Street, area, city" autocomplete="street-address">
+          </div>
+
+          <div class="form-grid two">
+            <div class="field">
+              <label for="emergencyName">Emergency contact name <span class="hint">(optional)</span></label>
+              <input id="emergencyName" name="emergencyName">
+            </div>
+            <div class="field">
+              <label for="emergencyPhone">Emergency contact phone <span class="hint">(optional)</span></label>
+              <input id="emergencyPhone" name="emergencyPhone" type="tel">
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ============ 4. HEALTH & NOTES ============ -->
+        <fieldset class="form-section" data-section="medical">
+          <legend>
+            <span class="step optional">4</span>
+            <span><b>Health &amp; additional notes</b><small>Optional — helps staff keep your child safe</small></span>
+          </legend>
+
+          <div class="form-grid two">
+            <div class="field">
+              <label for="bloodGroup">Blood group</label>
+              <select id="bloodGroup" name="bloodGroup">
+                <option value="">Unknown / not provided</option>
+                <option>O+</option><option>O−</option><option>A+</option><option>A−</option>
+                <option>B+</option><option>B−</option><option>AB+</option><option>AB−</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="prevSchool">Previous school <span class="hint">(if transferring)</span></label>
+              <input id="prevSchool" name="prevSchool">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="medicalNotes">Allergies, medical conditions &amp; notes</label>
+            <textarea id="medicalNotes" name="medicalNotes" rows="4" maxlength="400" placeholder="e.g. Mild asthma — carries an inhaler. Allergic to peanuts."></textarea>
+            <span class="counter" id="medCount">0 / 400</span>
+          </div>
+        </fieldset>
+
+        <!-- ============ FOOTER ============ -->
+        <div class="form-footer">
+          <span class="footer-status" id="footerStatus">No changes yet</span>
+          <div class="footer-actions">
+            <button type="button" class="btn btn-ghost" id="resetBtn"><i data-lucide="eraser" aria-hidden="true"></i>Reset</button>
+            <button type="button" class="btn btn-ghost" id="saveAddBtn"><i data-lucide="user-plus" aria-hidden="true"></i>Save &amp; add another</button>
+            <button type="submit" class="btn btn-primary" id="saveBtn"><i data-lucide="check" aria-hidden="true"></i>Save student</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- ============ RIGHT COLUMN ============ -->
+    <aside class="right-column">
+
+      <section class="card card-pad">
+        <div class="section-title">
+          <h2><i data-lucide="id-card" aria-hidden="true"></i>ID Preview</h2>
+          <span class="pill">Live</span>
+        </div>
+
+        <div class="id-badge">
+          <div class="badge-head">
+            <span class="badge-mark"><i data-lucide="graduation-cap" aria-hidden="true"></i></span>
+            <div>
+              <b>New Testament Baptist Academy</b>
+              <small>CREche – PRIMARY</small>
+            </div>
+          </div>
+          <div class="badge-body">
+            <div class="badge-photo" id="badgePhoto"><span id="badgeInitials">?</span></div>
+            <div class="badge-info">
+              <div class="badge-name" id="badgeName">New student</div>
+              <div class="badge-id" id="badgeId">NTBA/2026/0000</div>
+              <div class="badge-meta">
+                <span id="badgeClass">No class</span>
+                <span id="badgeGender">—</span>
+                <span id="badgeAge">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card card-pad">
+        <div class="section-title"><h2><i data-lucide="circle-dashed" aria-hidden="true"></i>Form Completion</h2></div>
+        <div class="completion">
+          <div class="comp-ring" id="compRing" style="--pct:0">
+            <span id="compPct">0<small>%</small></span>
+          </div>
+          <ul class="comp-list" id="compList"></ul>
+        </div>
+      </section>
+
+      <section class="card card-pad">
+        <div class="section-title"><h2><i data-lucide="history" aria-hidden="true"></i>Recently Added</h2></div>
+        <div class="recent" id="recentList"></div>
+      </section>
+
+    </aside>
+  </div>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="check-circle-2" aria-hidden="true"></i><span id="toastMsg">Saved</span></div>
+
+<script>
+(() => {
+  "use strict";
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+
+  const STUDENTS_KEY = "ntba.students.v1";
+  const COUNTER_KEY  = "ntba.students.counter";
+  const DRAFT_KEY    = "ntba.students.draft";
+
+  const form = $("#studentForm");
+  let dirty = false;
+  let photoData = "";
+
+  /* ---------------- helpers ---------------- */
+  const val  = id => ($("#" + id)?.value || "").trim();
+  const setV = (id, v) => { const el = $("#" + id); if (el) el.value = v; };
+  const todayISO = () => new Date().toISOString().slice(0, 10);
+
+  function ageFrom(dob) {
+    if (!dob) return null;
+    const b = new Date(dob), t = new Date();
+    let a = t.getFullYear() - b.getFullYear();
+    const m = t.getMonth() - b.getMonth();
+    if (m < 0 || (m === 0 && t.getDate() < b.getDate())) a--;
+    return a >= 0 && a < 120 ? a : null;
+  }
+
+  function initials(first, last) {
+    const a = (first || "").trim()[0] || "";
+    const b = (last  || "").trim()[0] || "";
+    return (a + b).toUpperCase() || "?";
+  }
+
+  function nextStudentId() {
+    let n = 0;
+    try { n = parseInt(localStorage.getItem(COUNTER_KEY) || "0", 10); } catch {}
+    const yr = new Date().getFullYear();
+    return `NTBA/${yr}/${String(n + 1).padStart(4, "0")}`;
+  }
+  function bumpCounter() {
+    try {
+      const n = parseInt(localStorage.getItem(COUNTER_KEY) || "0", 10) + 1;
+      localStorage.setItem(COUNTER_KEY, String(n));
+    } catch {}
+  }
+
+  function toast(msg, kind) {
+    const t = $("#toast");
+    $("#toastMsg").textContent = msg;
+    t.classList.toggle("warn", kind === "warn");
+    t.classList.add("show");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => t.classList.remove("show"), 2800);
+  }
+
+  function setDirty(v) {
+    dirty = v;
+    const pill = $("#statusPill");
+    pill.textContent = v ? "Unsaved changes" : "New record";
+    pill.className = "pill " + (v ? "dirty" : "saved");
+    $("#footerStatus").textContent = v ? "Unsaved changes" : "No changes yet";
+  }
+
+  /* ---------------- validation ---------------- */
+  const RULES = {
+    firstName:       { req: true,  msg: "First name is required" },
+    lastName:        { req: true,  msg: "Last name is required" },
+    dob:             { req: true,  msg: "Date of birth is required",
+                       extra: v => ageFrom(v) !== null && ageFrom(v) <= 18 ? null : "Age must be between 0 and 18" },
+    gender:          { req: true,  msg: "Please select a gender", radio: "gender" },
+    klass:           { req: true,  msg: "Please select a class" },
+    admissionDate:   { req: true,  msg: "Admission date is required" },
+    guardianName:    { req: true,  msg: "Guardian name is required" },
+    guardianRelation:{ req: true,  msg: "Please select a relationship" },
+    guardianPhone:   { req: true,  msg: "Phone number is required",
+                       extra: v => /^[+\d][\d\s\-()]{7,}$/.test(v) ? null : "Enter a valid phone number" },
+    guardianEmail:   { req: false, msg: "Enter a valid email",
+                       extra: v => !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? null : "Enter a valid email" }
+  };
+
+  function fieldValue(name) {
+    if (RULES[name]?.radio) {
+      const r = form.querySelector(`input[name="${name}"]:checked`);
+      return r ? r.value : "";
+    }
+    return val(name);
+  }
+
+  function validateField(name) {
+    const rule = RULES[name];
+    if (!rule) return true;
+    const el = $("#" + name) || form.querySelector(`[name="${name}"]`);
+    const wrap = el?.closest(".field");
+    if (!wrap) return true;
+
+    const v = fieldValue(name);
+    let err = "";
+    if (rule.req && !v) err = rule.msg;
+    else if (rule.extra && v) err = rule.extra(v) || "";
+
+    const msgEl = wrap.querySelector(".field-error");
+    wrap.classList.toggle("invalid", !!err);
+    if (msgEl) msgEl.textContent = err;
+    el?.setAttribute?.("aria-invalid", err ? "true" : "false");
+    return !err;
+  }
+
+  function validateAll() {
+    let ok = true;
+    Object.keys(RULES).forEach(n => { if (!validateField(n)) ok = false; });
+    return ok;
+  }
+
+  /* ---------------- completion meter ---------------- */
+  const SECTIONS = [
+    { id: "personal", label: "Personal details", fields: ["firstName", "lastName", "dob", "gender"] },
+    { id: "enroll",   label: "Enrollment",       fields: ["klass", "admissionDate"] },
+    { id: "guardian", label: "Parent / guardian",fields: ["guardianName", "guardianRelation", "guardianPhone"] }
+  ];
+
+  function updateCompletion() {
+    let done = 0, total = 0;
+    const items = SECTIONS.map(s => {
+      const filled = s.fields.filter(f => fieldValue(f)).length;
+      const complete = filled === s.fields.length;
+      total++; if (complete) done++;
+      return { label: s.label, complete, partial: !complete && filled > 0, filled, need: s.fields.length };
+    });
+
+    const pct = Math.round((done / total) * 100);
+    $("#compRing").style.setProperty("--pct", pct);
+    $("#compPct").innerHTML = `${pct}<small>%</small>`;
+
+    $("#compList").innerHTML = items.map(i => `
+      <li class="${i.complete ? "done" : i.partial ? "partial" : ""}">
+        <i data-lucide="${i.complete ? "check-circle-2" : i.partial ? "circle-dot-dashed" : "circle"}" aria-hidden="true"></i>
+        <span>${esc(i.label)}</span>
+        <small>${i.filled}/${i.need}</small>
+      </li>`).join("");
+    if (window.lucide) lucide.createIcons();
+  }
+
+  /* ---------------- live preview ---------------- */
+  function updatePreview() {
+    const first = val("firstName"), last = val("lastName");
+    const full = [first, val("middleName"), last].filter(Boolean).join(" ") || "New student";
+
+    $("#badgeName").textContent = full;
+    $("#badgeId").textContent   = val("studentId") || "NTBA/2026/0000";
+    $("#badgeClass").textContent= val("klass") || "No class";
+    $("#badgeGender").textContent = fieldValue("gender") || "—";
+
+    const age = ageFrom(val("dob"));
+    $("#badgeAge").textContent = age !== null ? `${age} yr${age === 1 ? "" : "s"}` : "—";
+
+    const ph = $("#badgePhoto");
+    if (photoData) {
+      ph.style.backgroundImage = `url('${photoData}')`;
+      ph.textContent = "";
+    } else {
+      ph.style.backgroundImage = "";
+      ph.innerHTML = `<span id="badgeInitials">${esc(initials(first, last))}</span>`;
+    }
+
+    const ageHint = $("#ageHint");
+    if (age !== null) { ageHint.textContent = `Age: ${age} year${age === 1 ? "" : "s"}`; ageHint.classList.add("filled"); }
+    else { ageHint.textContent = "Age will appear here"; ageHint.classList.remove("filled"); }
+  }
+
+  /* ---------------- recent list ---------------- */
+  function loadStudents() {
+    try { return JSON.parse(localStorage.getItem(STUDENTS_KEY) || "[]"); } catch { return []; }
+  }
+  function saveStudents(list) {
+    try { localStorage.setItem(STUDENTS_KEY, JSON.stringify(list.slice(0, 50))); } catch {}
+  }
+
+  function renderRecent() {
+    const list = loadStudents().slice(0, 4);
+    const box = $("#recentList");
+    if (!list.length) {
+      box.innerHTML = `<div class="empty"><i data-lucide="inbox" aria-hidden="true"></i><p>No students added yet.</p></div>`;
+    } else {
+      box.innerHTML = list.map(s => `
+        <div class="recent-item">
+          <span class="recent-avatar">${esc(initials(s.firstName, s.lastName))}</span>
+          <div>
+            <b>${esc([s.firstName, s.lastName].filter(Boolean).join(" "))}</b>
+            <small>${esc(s.klass || "—")} · ${esc(s.studentId || "")}</small>
+          </div>
+        </div>`).join("");
+    }
+    if (window.lucide) lucide.createIcons();
+  }
+
+  /* ---------------- draft persistence ---------------- */
+  const FIELD_IDS = ["firstName","middleName","lastName","nationality","dob","klass","academicYear","term","admissionDate","house","transport","guardianName","guardianRelation","guardianPhone","guardianAltPhone","guardianEmail","guardianJob","address","emergencyName","emergencyPhone","bloodGroup","prevSchool","medicalNotes"];
+
+  function saveDraft() {
+    const data = {};
+    FIELD_IDS.forEach(id => data[id] = val(id));
+    const g = form.querySelector('input[name="gender"]:checked');
+    data.gender = g ? g.value : "";
+    data.photo = photoData;
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify(data)); } catch {}
+  }
+  function loadDraft() {
+    try {
+      const d = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null");
+      if (!d) return false;
+      FIELD_IDS.forEach(id => { if (d[id] !== undefined) setV(id, d[id]); });
+      if (d.gender) {
+        const r = form.querySelector(`input[name="gender"][value="${d.gender}"]`);
+        if (r) r.checked = true;
+      }
+      if (d.photo) { photoData = d.photo; }
+      return true;
+    } catch { return false; }
+  }
+  function clearDraft() {
+    try { localStorage.removeItem(DRAFT_KEY); } catch {}
+  }
+
+  /* ---------------- form reset ---------------- */
+  function resetForm(keepContext) {
+    const keep = keepContext ? { academicYear: val("academicYear"), term: val("term"), klass: val("klass") } : null;
+
+    form.reset();
+    FIELD_IDS.forEach(id => { const el = $("#" + id); if (el && el.type !== "date" && el.tagName !== "SELECT") el.value = ""; });
+    setV("nationality", "Ghanaian");
+    setV("admissionDate", todayISO());
+    setV("studentId", nextStudentId());
+    setV("academicYear", keep ? keep.academicYear : "2026 / 2027");
+    setV("term", keep ? keep.term : "Term 1");
+    if (keep?.klass) setV("klass", keep.klass);
+
+    photoData = "";
+    $("#photoInput").value = "";
+    $("#photoClear").disabled = true;
+    form.querySelectorAll(".field.invalid").forEach(f => f.classList.remove("invalid"));
+    form.querySelectorAll(".field-error").forEach(e => (e.textContent = ""));
+    $("#medCount").textContent = "0 / 400";
+
+    clearDraft();
+    setDirty(false);
+    updatePreview();
+    updateCompletion();
+    if (window.lucide) lucide.createIcons();
+  }
+
+  /* ---------------- collect payload ---------------- */
+  function collect() {
+    const s = {};
+    FIELD_IDS.forEach(id => s[id] = val(id));
+    s.gender = fieldValue("gender");
+    s.photo = photoData;
+    s.createdAt = new Date().toISOString();
+    return s;
+  }
+
+  function persistStudent() {
+    const s = collect();
+    const list = loadStudents();
+    list.unshift(s);
+    saveStudents(list);
+    bumpCounter();
+    return s;
+  }
+
+  /* ---------------- events ---------------- */
+  form.addEventListener("input", e => {
+    if (e.target === $("#photoInput")) return;
+    if (e.target.name === "medicalNotes") {
+      $("#medCount").textContent = `${e.target.value.length} / 400`;
+    }
+    if (e.target.name && RULES[e.target.name]) validateField(e.target.name);
+    setDirty(true);
+    saveDraft();
+    updatePreview();
+    updateCompletion();
+  });
+
+  form.addEventListener("change", e => {
+    if (e.target.name && RULES[e.target.name]) validateField(e.target.name);
+    setDirty(true); saveDraft(); updatePreview(); updateCompletion();
+  });
+
+  form.addEventListener("blur", e => {
+    if (e.target.name && RULES[e.target.name]) validateField(e.target.name);
+  }, true);
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    if (!validateAll()) {
+      const first = form.querySelector(".field.invalid");
+      first?.scrollIntoView({ behavior: "smooth", block: "center" });
+      first?.querySelector("input,select,textarea")?.focus();
+      toast("Please fix the highlighted fields", "warn");
+      return;
+    }
+    const s = persistStudent();
+    renderRecent();
+    toast(`Saved · ${s.firstName} ${s.lastName} (${s.studentId})`);
+    resetForm(true);
+  });
+
+  $("#saveAddBtn").addEventListener("click", () => {
+    if (!validateAll()) {
+      const first = form.querySelector(".field.invalid");
+      first?.scrollIntoView({ behavior: "smooth", block: "center" });
+      first?.querySelector("input,select,textarea")?.focus();
+      toast("Please fix the highlighted fields", "warn");
+      return;
+    }
+    const s = persistStudent();
+    renderRecent();
+    toast(`Saved · ${s.firstName} ${s.lastName} — ready for the next one`);
+    resetForm(true);
+    $("#firstName").focus();
+  });
+
+  $("#resetBtn").addEventListener("click", () => {
+    if (dirty && !confirm("Discard everything you've entered?")) return;
+    resetForm(false);
+    toast("Form cleared");
+  });
+
+  /* photo upload */
+  $("#photoInput").addEventListener("change", e => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 500 * 1024) { toast("Image is larger than 500 KB", "warn"); e.target.value = ""; return; }
+    const fr = new FileReader();
+    fr.onload = () => {
+      photoData = fr.result;
+      $("#photoClear").disabled = false;
+      setDirty(true); saveDraft(); updatePreview();
+    };
+    fr.readAsDataURL(file);
+  });
+
+  $("#photoClear").addEventListener("click", () => {
+    photoData = "";
+    $("#photoInput").value = "";
+    $("#photoClear").disabled = true;
+    setDirty(true); saveDraft(); updatePreview();
+  });
+
+  window.addEventListener("beforeunload", e => {
+    if (!dirty) return;
+    e.preventDefault(); e.returnValue = "";
+  });
+
+  /* ---------------- init ---------------- */
+  (function init() {
+    const hasDraft = loadDraft();
+    if (!val("studentId")) setV("studentId", nextStudentId());
+    if (!val("admissionDate")) setV("admissionDate", todayISO());
+    if (!val("academicYear")) setV("academicYear", "2026 / 2027");
+    if (photoData) $("#photoClear").disabled = false;
+    $("#medCount").textContent = `${val("medicalNotes").length} / 400`;
+    if (window.lucide) lucide.createIcons();
+    updatePreview();
+    updateCompletion();
+    renderRecent();
+    if (hasDraft) toast("Draft restored");
+    else setDirty(false);
+  })();
+})();
+</script>
+</body></html>
