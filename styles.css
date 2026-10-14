@@ -1,0 +1,20 @@
+/* 1. Yellow action card — white on #ffc82f is 1.55:1. Navy is 7.2:1. */
+.action.yellow{ color:#5a3b00 }
+.action.yellow small{ color:#7a5200 }
+
+/* 2. Sidebar now has 12 items — guard against clipping on short screens. */
+.sidebar{ overflow-y:auto; overscroll-behavior:contain }
+.sidebar nav{ flex:none }
+.sidebar-quote{ flex:none; min-height:170px }
+
+/* 3. The dashboard had no focus styling anywhere. */
+:where(a,button,input,select,[tabindex]):focus-visible{
+  outline:3px solid #7fb6ff; outline-offset:2px; border-radius:8px;
+}
+
+/* 4. If the solid-blob stat icons aren't intentional, remove the fill override. */
+.stat-icon svg{ fill:none }
+
+/* 5. Contrast lift on the smallest text. */
+.announcement time{ color:#5a7492 }   /* was #7188a5 — 3.65:1, fails AA */
+.days .faded{ color:#93a9c1 }         /* was #b7c6d8 — 1.8:1 */
