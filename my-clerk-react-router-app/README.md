@@ -1,8 +1,8 @@
 # my-clerk-react-router-app — Clerk integration and dev guide
 
-This app is a React Router full-stack template with an example Clerk integration and a small Express server demonstrating server-side session verification. This README adds Clerk-specific setup and run instructions to the template README.
+> NOTE: The demo static auth page has been archived to `docs/auth-demo.html`. The original `auth.html` at the repository root contains local-demo credentials and a client-side demo implementation — it will be removed before production. See the "Demo auth (archived)" section below for links and guidance.
 
-> Note: This repo contains a demo static auth page (auth.html) which is useful for UI prototyping only. Do not ship that page in production; see the Security section.
+This app is a React Router full-stack template with an example Clerk integration and a small Express server demonstrating server-side session verification. This README adds Clerk-specific setup and run instructions to the template README.
 
 ---
 
@@ -11,6 +11,15 @@ This app is a React Router full-stack template with an example Clerk integration
 - Client (React Router): ClerkProvider wiring and protected routes in `app/root.tsx` and route components.
 - Server (Express): `server/index.ts` — example of verifying Clerk sessions server-side using `@clerk/clerk-sdk-node` with a dev fallback (permissive) when `CLERK_SECRET_KEY` is not set.
 - `.env.example`: template for env variables needed.
+- `docs/auth-demo.html`: archived demo auth page (do not deploy in production).
+
+---
+
+## Demo auth (archived)
+
+The repository previously included a standalone UI demo at the repo root (`auth.html`) that implemented a purely client-side demo authentication flow with embedded demo credentials. That page has been archived to `docs/auth-demo.html` for reference. The original `auth.html` remains in the root for now but will be removed before production to avoid accidental publishing of demo credentials.
+
+If you need the UI demo for local prototyping, use the archived file under `docs/`. Otherwise, prefer the Clerk integration (described below) for real authentication.
 
 ---
 
@@ -108,7 +117,7 @@ If the SDK method surface differs for your installed version, update `verifyWith
 
 ## Security checklist (before production)
 
-- Remove `auth.html` or move it to `docs/` — it contains demo credentials and is for UI demo purposes only.
+- Remove `auth.html` from the repository root (or keep only the archived `docs/auth-demo.html`).
 - Set `CLERK_SECRET_KEY` and `VITE_CLERK_PUBLISHABLE_KEY` in your hosting provider's secrets (never commit them).
 - Ensure the server uses secure HTTPS and secure cookie settings (HttpOnly, SameSite, Secure) if you rely on cookies.
 - Verify session expiry/freshness server-side and check claims/roles before returning sensitive data.
@@ -143,6 +152,6 @@ I can:
 
 - update `verifyWithClerk` to call the exact Clerk SDK method for your SDK version,
 - run an end-to-end smoke test in this environment (you must add the keys to `.env.local`),
-- or remove/move `auth.html` from the repo.
+- or delete the root-level `auth.html` from the repo.
 
 Tell me which of those you'd like and I’ll apply the change.
