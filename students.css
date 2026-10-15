@@ -275,3 +275,23 @@
 @media(prefers-reduced-motion:reduce){
   .toast,.btn,.comp-ring{ transition:none }
 }
+
+
+/* ---------- sign-out button in topbar ---------- */
+.profile .icon-btn.signout{
+  width:34px; height:34px; flex:none;
+  display:grid; place-items:center;
+  border:1px solid #ffffff2e; border-radius:9px;
+  background:#ffffff14; color:#fff; cursor:pointer;
+  transition:background .15s, border-color .15s;
+}
+.profile .icon-btn.signout svg{ width:16px; height:16px }
+.profile .icon-btn.signout:hover{
+  background:#ffffff26;
+  border-color:#ffffff52;
+}
+
+@media(max-width:620px){
+  .profile .icon-btn.signout{ width:32px; height:32px }
+  .profile .icon-btn.signout svg{ width:15px; height:15px }
+}
