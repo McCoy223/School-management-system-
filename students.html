@@ -2,12 +2,25 @@
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Add Student — New Testament Baptist Academy</title><meta name="theme-color" content="#073a78"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23073a78'/%3E%3C/svg%3E"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://unpkg.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Kalam:wght@700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="students.css"><script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.js"></script></head>
 <body>
 
+<!-- ============ AUTH GATE ============ -->
+<script>
+  (function () {
+    var s = null;
+    try { s = JSON.parse(sessionStorage.getItem("ntba.session") || localStorage.getItem("ntba.session") || "null"); } catch (e) {}
+    if (!s) location.replace("auth.html");
+  })();
+</script>
+
 <header class="topbar">
   <a class="brand" href="index.html"><span class="brand-mark"><i data-lucide="graduation-cap" aria-hidden="true"></i></span><span><b>New Testament<br>Baptist Academy</b><strong>Creche – Primary</strong><small>Learn&nbsp; • &nbsp;Grow&nbsp; • &nbsp;Succeed</small></span></a>
   <label class="search"><i data-lucide="search" aria-hidden="true"></i><input placeholder="Search students, staff, classes..." aria-label="Search students, staff and classes"></label>
   <div class="top-actions">
     <button class="bell" aria-label="Notifications, 3 unread"><i data-lucide="bell" aria-hidden="true"></i><em aria-hidden="true">3</em></button>
-    <div class="profile"><span class="avatar"><i data-lucide="user-round" aria-hidden="true"></i></span><span><b>Admin</b><small>Administrator</small></span><i data-lucide="chevron-down" aria-hidden="true"></i></div>
+    <div class="profile">
+      <span class="avatar"><i data-lucide="user-round" aria-hidden="true"></i></span>
+      <span><b id="profileName">Admin</b><small id="profileRole">Administrator</small></span>
+      <button class="icon-btn signout" id="signOutBtn" aria-label="Sign out" title="Sign out"><i data-lucide="log-out" aria-hidden="true"></i></button>
+    </div>
   </div>
 </header>
 
@@ -36,7 +49,7 @@
 
       <header class="page-head">
         <div class="titles">
-          <p class="crumbs"><a href="index.html">Dashboard</a><span>›</span><a href="#">Students</a><span>›</span><b>Add Student</b></p>
+          <p class="crumbs"><a href="index.html">Dashboard</a><span>›</span><a href="students.html">Students</a><span>›</span><b>Add Student</b></p>
           <h1><i data-lucide="user-round-plus" aria-hidden="true"></i>Register a New Student</h1>
           <p>Fill in the details below. Fields marked <span class="req">*</span> are required.</p>
         </div>
@@ -300,7 +313,7 @@
             <span class="badge-mark"><i data-lucide="graduation-cap" aria-hidden="true"></i></span>
             <div>
               <b>New Testament Baptist Academy</b>
-              <small>CREche – PRIMARY</small>
+              <small>CRECHE – PRIMARY</small>
             </div>
           </div>
           <div class="badge-body">
@@ -709,6 +722,22 @@
     if (hasDraft) toast("Draft restored");
     else setDirty(false);
   })();
+})();
+
+/* ---------------- session identity + sign-out ---------------- */
+(function () {
+  var s = null;
+  try { s = JSON.parse(sessionStorage.getItem("ntba.session") || localStorage.getItem("ntba.session") || "null"); } catch (e) {}
+  if (s) {
+    document.getElementById("profileName").textContent = s.name || "Staff";
+    document.getElementById("profileRole").textContent =
+      s.role === "admin" ? "Administrator" :
+      s.role === "teacher" ? "Teacher" : "Support Staff";
+  }
+  document.getElementById("signOutBtn").addEventListener("click", function () {
+    try { sessionStorage.removeItem("ntba.session"); localStorage.removeItem("ntba.session"); } catch (e) {}
+    location.href = "auth.html";
+  });
 })();
 </script>
 </body></html>
