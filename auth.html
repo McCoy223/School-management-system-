@@ -108,7 +108,7 @@
                     <button type="button" class="demo-chip"
                         data-email="teacher@ntba.edu.gh">teacher@ntba.edu.gh</button>
                     <button type="button" class="demo-chip" data-email="staff@ntba.edu.gh">staff@ntba.edu.gh</button>
-                    <span>Password for all demo accounts: <code>ntba2026</code></span>
+                    <span>Use the same credentials provided by the system administrator for each staff account.</span>
                 </div>
             </form>
 
@@ -219,8 +219,8 @@
             const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
             /* ------------------------------------------------------------------
-               DEMO credential store. Replace this whole block with Clerk.
-               Passwords are visible in source on purpose — this is a UI demo.
+               Demo credential store. Replace this block with a secure backend/auth service.
+               Credentials are intentionally kept local to the browser for the demo only.
                ------------------------------------------------------------------ */
             const ACCOUNTS = [
                 { email: "admin@ntba.edu.gh", password: "ntba2026", role: "admin", name: "Administrator" },
@@ -249,6 +249,15 @@
             function clearErrors (form) {
                 form.querySelectorAll(".field.invalid").forEach(f => f.classList.remove("invalid"));
                 form.querySelectorAll(".field-error").forEach(e => (e.textContent = ""));
+            }
+
+            function saveSession(session) {
+                try {
+                    const store = $("#siRemember").checked ? localStorage : sessionStorage;
+                    store.setItem(SESSION_KEY, JSON.stringify(session));
+                } catch {
+                    // Storage may be blocked. Continue without persisting session.
+                }
             }
 
             /* ---------------------------- mode tabs ---------------------------- */
@@ -319,10 +328,7 @@
                     role: found.role,
                     at: new Date().toISOString()
                 };
-                try
-                {
-                    (($("#siRemember").checked) ? localStorage : sessionStorage).setItem(SESSION_KEY, JSON.stringify(session));
-                } catch { }
+                saveSession(session);
 
                 toast(`Signed in as ${found.role}`);
                 setTimeout(() => (location.href = "index.html"), 700);
@@ -365,7 +371,7 @@
 
                 toast("Account created — signing you in");
                 const session = { email, name: `${$("#suFirst").value.trim()} ${$("#suLast").value.trim()}`, role, at: new Date().toISOString() };
-                try { localStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch { }
+                saveSession(session);
                 setTimeout(() => (location.href = "index.html"), 800);
             });
 
