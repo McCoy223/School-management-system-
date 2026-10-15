@@ -26,8 +26,14 @@ declare global {
 
 /**
  * verifyWithClerk: verifies a session token using the Clerk SDK.
- * - If CLERK_SECRET_KEY is not set, it falls back to a permissive local demo verifier (dev only).
- * - If CLERK_SECRET_KEY is set and the SDK call fails, an error will be thrown.
+ *
+ * This implementation prefers the explicit server-side verification method
+ * `clerk.sessions.verifySessionToken(token)` which is the recommended approach
+ * in recent Clerk Node SDKs. If the SDK doesn't expose that method it will
+ * raise a clear error instructing the developer to update the SDK.
+ *
+ * If CLERK_SECRET_KEY is not set, a permissive local demo verifier is used
+ * for development only. DO NOT use the fallback in production.
  */
 async function verifyWithClerk(sessionToken: string) {
   if (!process.env.CLERK_SECRET_KEY || !clerk) {
@@ -35,48 +41,35 @@ async function verifyWithClerk(sessionToken: string) {
     return { userId: "local-demo-user", sessionId: "local-session", email: "demo@local" };
   }
 
-  // Try common Clerk SDK verification methods with graceful fallback
-  // The Clerk Node SDK surface may have different helper names across versions — try several.
-  try {
-    // Preferred modern API: clerk.sessions.verifySession or clerk.sessions.verifySessionToken
-    if ((clerk as any).sessions) {
-      const sessions = (clerk as any).sessions;
-      if (typeof sessions.verifySession === "function") {
-        const verified = await sessions.verifySession(sessionToken);
-        return mapClerkSession(verified);
-      }
-      if (typeof sessions.verifySessionToken === "function") {
-        const verified = await sessions.verifySessionToken(sessionToken);
-        return mapClerkSession(verified);
-      }
-      if (typeof sessions.verify === "function") {
-        const verified = await sessions.verify(sessionToken);
-        return mapClerkSession(verified);
-      }
-    }
-
-    // Older SDKs may expose a top-level verifySession method
-    if (typeof (clerk as any).verifySession === "function") {
-      const verified = await (clerk as any).verifySession(sessionToken);
-      return mapClerkSession(verified);
-    }
-
-    // If none of the known methods are present, throw an instructive error
+  // Production: require the Clerk SDK verification method to exist
+  const sessions = (clerk as any).sessions;
+  if (!sessions) {
     throw new Error(
-      "Unable to find a session verification method on the Clerk SDK instance — check @clerk/clerk-sdk-node version and SDK docs."
+      "The installed @clerk/clerk-sdk-node instance does not expose a 'sessions' helper. Ensure you're using a compatible SDK version."
     );
-  } catch (err: any) {
-    // Re-throw to be handled by the caller
-    throw err;
   }
+
+  // Prefer verifySessionToken, fall back to verifySession only if present
+  if (typeof sessions.verifySessionToken === "function") {
+    const verified = await sessions.verifySessionToken(sessionToken);
+    return mapClerkSession(verified);
+  }
+
+  if (typeof sessions.verifySession === "function") {
+    const verified = await sessions.verifySession(sessionToken);
+    return mapClerkSession(verified);
+  }
+
+  throw new Error(
+    "Unable to find a compatible session verification method on Clerk SDK. Update @clerk/clerk-sdk-node or modify verifyWithClerk to match the SDK surface."
+  );
 }
 
 function mapClerkSession(verified: any) {
-  // Map Clerk verification result to a minimal common shape used by the app
   if (!verified) return null;
   const userId = verified.userId || verified.user_id || verified.user?.id || verified.user?.user_id;
   const sessionId = verified.id || verified.sessionId || verified.session_id || verified.sid;
-  const email = verified.email || verified.user?.primary_email || verified.user?.email_address;
+  const email = verified.email || verified.user?.primary_email_address?.email_address || verified.user?.primary_email || null;
   return { userId, sessionId, email, raw: verified };
 }
 
@@ -122,6 +115,6 @@ app.listen(PORT, () => {
       "CLERK_SECRET_KEY not set — the requireAuth middleware will use a permissive local demo verifier. Do not use in production."
     );
   } else {
-    console.log("CLERK_SECRET_KEY detected — server will use Clerk SDK to verify sessions (if SDK supports it).");
+    console.log("CLERK_SECRET_KEY detected — server will use Clerk SDK to verify sessions.");
   }
 });
