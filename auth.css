@@ -752,4 +752,7 @@ body {
     }
 
     .role-inner {
-        flex-direction: row
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+}
