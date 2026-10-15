@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fail if .env or .env.local was accidentally committed
+        run: |
+          if git ls-files --error-unmatch ".env" ".env.local" > /dev/null 2>&1; then
+            echo "::error ::Found committed .env or .env.local file. Remove it and use repository secrets instead."
+            git ls-files --error-unmatch ".env" ".env.local" || true
+            exit 1
+          fi || true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          cd my-clerk-react-router-app
+          npm ci
+
+      - name: Typecheck
+        run: |
+          cd my-clerk-react-router-app
+          npm run typecheck
+
+      - name: Build app
+        run: |
+          cd my-clerk-react-router-app
+          npm run build
+
+      - name: Basic server lint/smoke (optional)
+        run: |
+          echo "No runtime smoke tests configured. Add tests or integration steps as needed."
