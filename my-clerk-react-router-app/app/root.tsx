@@ -1,6 +1,21 @@
-import {ClerkProvider, Show, SignInButton, SignUpButton, UserButton} from "@clerk/react-router";
-import {clerkMiddleware, rootAuthLoader} from "@clerk/react-router/server";
-import {isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData} from "react-router";
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/react-router";
+import { clerkMiddleware, rootAuthLoader } from "@clerk/react-router/server";
+import {
+  isRouteErrorResponse,
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useLoaderData,
+} from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -42,18 +57,51 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const loaderData = useLoaderData<typeof loader>();
-  return <ClerkProvider loaderData={loaderData}>
-    <header className="flex h-16 items-center justify-end gap-4 border-b px-4">
-      <Show when="signed-out">
-        <SignInButton />
-        <SignUpButton />
-      </Show>
-      <Show when="signed-in">
-        <UserButton />
-      </Show>
-    </header>
+
+  // Prefer VITE_ prefix for Vite, fallback to CLERK_PUBLISHABLE_KEY
+  const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY ?? import.meta.env.CLERK_PUBLISHABLE_KEY;
+
+  if (!publishableKey) {
+    return (
+      <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <Meta />
+          <Links />
+        </head>
+        <body className="bg-slate-950 text-slate-100">
+          <main className="flex min-h-screen items-center justify-center p-6">
+            <div className="max-w-xl rounded-xl border border-slate-700 bg-slate-900 p-6 shadow-xl">
+              <h1 className="text-2xl font-semibold">Set up your Clerk keys</h1>
+              <p className="mt-3 text-sm text-slate-300">Add your Clerk credentials to <code>.env.local</code> before starting the app.</p>
+              <pre className="mt-4 overflow-x-auto rounded-md bg-slate-950 p-3 text-xs text-emerald-300">
+{`VITE_CLERK_PUBLISHABLE_KEY=pk_test_your_key_here
+CLERK_SECRET_KEY=sk_test_your_key_here`}
+              </pre>
+            </div>
+          </main>
+        </body>
+      </html>
+    );
+  }
+
+  return (
+    <ClerkProvider publishableKey={publishableKey} loaderData={loaderData} afterSignOutUrl="/">
+      <header className="flex h-16 items-center justify-end gap-4 border-b bg-white px-4 dark:bg-slate-950 dark:border-slate-800">
+        <SignedOut>
+          <SignInButton mode="modal" />
+          <SignUpButton mode="modal" />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </header>
+      <main className="min-h-[calc(100vh-4rem)]">
         <Outlet />
-      </ClerkProvider>;
+      </main>
+    </ClerkProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
@@ -63,21 +111,18 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   if (isRouteErrorResponse(error)) {
     message = error.status === 404 ? "404" : "Error";
-    details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
+    details = error.status === 404 ? "The requested page could not be found." : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    <main className="container mx-auto p-4 pt-16">
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className="mt-4 w-full overflow-x-auto p-4">
           <code>{stack}</code>
         </pre>
       )}
