@@ -1,16 +1,59 @@
-<!doctype html>
+<!-- index.html -->
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Auth demo removed</title>
-  <meta name="robots" content="noindex" />
-</head>
-<body>
-  <main style="max-width:800px;margin:6rem auto;font-family:system-ui,Segoe UI,Roboto,Arial,Helvetica,sans-serif;line-height:1.5;padding:1rem">
-    <h1>Demo auth page removed</h1>
-    <p>The standalone demo authentication page has been archived to <a href="/docs/auth-demo.html">docs/auth-demo.html</a> and removed from the site root to avoid publishing demo credentials. If you need the original demo, see the archived copy in <code>docs/auth-demo.html</code>.</p>
-    <p>If you are running the development app, use the React + Clerk integration under <code>my-clerk-react-router-app</code> instead.</p>
-  </main>
-</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>School Management - Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="auth-page">
+      <div class="auth-card">
+        <div class="brand">
+          <div class="brand-mark">S</div>
+          <h1>School Management</h1>
+        </div>
+
+        <h2>Welcome back</h2>
+        <p class="subtitle">Sign in to continue to your dashboard</p>
+
+        <form id="loginForm" class="auth-form">
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required />
+          </div>
+
+          <div class="row">
+            <label class="checkbox">
+              <input type="checkbox" />
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="primary-btn">Sign in</button>
+        </form>
+
+        <div class="divider"><span>or continue with</span></div>
+
+        <div class="socials">
+          <button type="button" class="social-btn">Google</button>
+          <button type="button" class="social-btn">Microsoft</button>
+        </div>
+
+        <p class="bottom-text">
+          Don’t have an account?
+          <a href="#" class="link">Create one</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+            </html>
